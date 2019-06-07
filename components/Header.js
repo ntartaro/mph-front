@@ -1,6 +1,18 @@
 import Link from "next/link";
-import Nav from "./Nav";
 import styled from "styled-components";
+import Nav from "./Nav";
+import Router from "next/router";
+import NProgress from "nprogress";
+
+Router.onRouteChangeStart = () => {
+  NProgress.start();
+};
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
+Router.onRouteChangeError = () => {
+  NProgress.done();
+};
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -33,7 +45,7 @@ const StyledHeader = styled.header`
       justify-content: center;
     }
   }
-  .sub-bar{
+  .sub-bar {
     display: grid;
     grid-template-columns: auto 1fr;
     border-bottom: 1px solid ${props => props.theme.lightGrey};
